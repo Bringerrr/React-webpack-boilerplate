@@ -1,6 +1,8 @@
 .ProfileCard {
     padding: 20px;
     border: 2px solid var(--inverted-bg-color);
+    display: flex;
+    gap: 8px;
 }
 
 .loading,

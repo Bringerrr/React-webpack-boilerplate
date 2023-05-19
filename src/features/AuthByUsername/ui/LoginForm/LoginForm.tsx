@@ -1,10 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
+import { Button, Input } from '@mui/material';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
-import { Text, TextTheme } from '@/shared/ui/Text';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -17,6 +15,7 @@ import { getLoginError } from '../../model/selectors/getLoginError/getLoginError
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
+import { MaterialInputOnChangeType } from '@/shared/types/ui';
 
 export interface LoginFormProps {
     className?: string;
@@ -35,16 +34,16 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
 
-    const onChangeUsername = useCallback(
-        (value: string) => {
-            dispatch(loginActions.setUsername(value));
+    const onChangeUsername: MaterialInputOnChangeType = useCallback(
+        (event) => {
+            dispatch(loginActions.setUsername(event.target.value));
         },
         [dispatch],
     );
 
-    const onChangePassword = useCallback(
-        (value: string) => {
-            dispatch(loginActions.setPassword(value));
+    const onChangePassword: MaterialInputOnChangeType = useCallback(
+        (event) => {
+            dispatch(loginActions.setPassword(event.target.value));
         },
         [dispatch],
     );
@@ -59,15 +58,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
             <div className={classNames(cls.LoginForm, {}, [className])}>
-                <Text title={t('Форма авторизации')} />
-                {error && (
-                    <Text
-                        text={t('Вы ввели неверный логин или пароль')}
-                        theme={TextTheme.ERROR}
-                    />
-                )}
                 <Input
-                    autofocus
                     type="text"
                     className={cls.input}
                     placeholder={t('Введите username')}
@@ -82,7 +73,6 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     value={password}
                 />
                 <Button
-                    theme={ButtonTheme.OUTLINE}
                     className={cls.loginBtn}
                     onClick={onLoginClick}
                     disabled={isLoading}

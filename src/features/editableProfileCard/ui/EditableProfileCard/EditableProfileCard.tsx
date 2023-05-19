@@ -4,13 +4,11 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { Text, TextTheme } from '@/shared/ui/Text';
 import { ProfileCard } from '@/entities/Profile';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { VStack } from '@/shared/ui/Stack';
 import { ValidateProfileError } from '../../model/consts/consts';
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
@@ -20,6 +18,7 @@ import { getProfileValidateErrors } from '../../model/selectors/getProfileValida
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
+import { MaterialInputOnChangeType } from '@/shared/types/ui';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -58,60 +57,79 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         }
     });
 
-    const onChangeFirstname = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ first: value || '' }));
+    const onChangeFirstname: MaterialInputOnChangeType = useCallback(
+        (event) => {
+            dispatch(
+                profileActions.updateProfile({
+                    first: event.target.value || '',
+                }),
+            );
         },
         [dispatch],
     );
 
-    const onChangeLastname = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ lastname: value || '' }));
+    const onChangeLastname: MaterialInputOnChangeType = useCallback(
+        (event) => {
+            dispatch(
+                profileActions.updateProfile({
+                    lastname: event.target.value || '',
+                }),
+            );
         },
         [dispatch],
     );
 
-    const onChangeCity = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ city: value || '' }));
+    const onChangeCity: MaterialInputOnChangeType = useCallback(
+        (event) => {
+            dispatch(
+                profileActions.updateProfile({
+                    city: event.target.value || '',
+                }),
+            );
         },
         [dispatch],
     );
 
-    const onChangeAge = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
+    const onChangeAge: MaterialInputOnChangeType = useCallback(
+        (event) => {
+            dispatch(
+                profileActions.updateProfile({
+                    age: Number(event.target.value || 0),
+                }),
+            );
         },
         [dispatch],
     );
 
-    const onChangeUsername = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ username: value || '' }));
+    const onChangeUsername: MaterialInputOnChangeType = useCallback(
+        (event) => {
+            dispatch(
+                profileActions.updateProfile({
+                    username: event.target.value || '',
+                }),
+            );
         },
         [dispatch],
     );
 
-    const onChangeAvatar = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ avatar: value || '' }));
+    const onChangeAvatar: MaterialInputOnChangeType = useCallback(
+        (event) => {
+            dispatch(
+                profileActions.updateProfile({
+                    avatar: event.target.value || '',
+                }),
+            );
         },
         [dispatch],
     );
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack gap="8" max className={classNames('', {}, [className])}>
+            <div className={classNames('', {}, [className])}>
                 <EditableProfileCardHeader />
                 {validateErrors?.length &&
                     validateErrors.map((err) => (
-                        <Text
-                            key={err}
-                            theme={TextTheme.ERROR}
-                            text={validateErrorTranslates[err]}
-                            data-testid="EditableProfileCard.Error"
-                        />
+                        <p>{validateErrorTranslates[err]}</p>
                     ))}
                 <ProfileCard
                     data={formData}
@@ -125,7 +143,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                     onChangeUsername={onChangeUsername}
                     onChangeAvatar={onChangeAvatar}
                 />
-            </VStack>
+            </div>
         </DynamicModuleLoader>
     );
 });

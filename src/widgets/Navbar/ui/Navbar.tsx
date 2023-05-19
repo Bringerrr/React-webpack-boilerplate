@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from '@mui/material';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { LoginModal } from '@/features/AuthByUsername';
 import { getUserAuthData, userActions } from '@/entities/User';
-import { Text, TextTheme } from '@/shared/ui/Text';
 import cls from './Navbar.module.scss';
 import { LangSwitcher } from '@/features/LangSwitcher';
 
@@ -32,30 +31,22 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     if (authData) {
         return (
             <header className={classNames(cls.Navbar, {}, [className])}>
-                <Text
-                    className={cls.appName}
-                    title={t('Ulbi TV App')}
-                    theme={TextTheme.INVERTED}
-                />
+                <p className={cls.appName}>{t('Ulbi TV App')}</p>
                 <LangSwitcher />
-                <button
+                <Button
                     onClick={() => {
                         dispatch(logout());
                     }}
                 >
-                    logout
-                </button>
+                    {t('logout')}
+                </Button>
             </header>
         );
     }
 
     return (
         <header className={classNames(cls.Navbar, {}, [className])}>
-            <Button
-                theme={ButtonTheme.CLEAR_INVERTED}
-                className={cls.links}
-                onClick={onShowModal}
-            >
+            <Button className={cls.links} onClick={onShowModal}>
                 {t('Войти')}
             </Button>
             {isAuthModal && (

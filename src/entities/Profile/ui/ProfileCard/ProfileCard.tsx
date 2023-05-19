@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next';
+import Input from '@mui/material/Input';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-import { Text, TextAlign, TextTheme } from '@/shared/ui/Text';
-import { Input } from '@/shared/ui/Input';
-import { Loader } from '@/shared/ui/Loader';
-import { HStack, VStack } from '@/shared/ui/Stack';
 import cls from './ProfileCard.module.scss';
 import { Profile } from '../../model/types/profile';
+import { MaterialInputOnChangeType } from '@/shared/types/ui';
 
 interface ProfileCardProps {
     className?: string;
@@ -13,12 +11,12 @@ interface ProfileCardProps {
     error?: string;
     isLoading?: boolean;
     readonly?: boolean;
-    onChangeLastname?: (value?: string) => void;
-    onChangeFirstname?: (value?: string) => void;
-    onChangeCity?: (value?: string) => void;
-    onChangeAge?: (value?: string) => void;
-    onChangeUsername?: (value?: string) => void;
-    onChangeAvatar?: (value?: string) => void;
+    onChangeLastname?: MaterialInputOnChangeType;
+    onChangeFirstname?: MaterialInputOnChangeType;
+    onChangeCity?: MaterialInputOnChangeType;
+    onChangeAge?: MaterialInputOnChangeType;
+    onChangeUsername?: MaterialInputOnChangeType;
+    onChangeAvatar?: MaterialInputOnChangeType;
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
@@ -37,39 +35,16 @@ export const ProfileCard = (props: ProfileCardProps) => {
     } = props;
     const { t } = useTranslation('profile');
 
-    if (isLoading) {
-        return (
-            <HStack
-                justify="center"
-                max
-                className={classNames(
-                    cls.ProfileCard,
-                    { [cls.loading]: true },
-                    [className],
-                )}
-            >
-                <Loader />
-            </HStack>
-        );
-    }
-
     if (error) {
         return (
-            <HStack
-                justify="center"
-                max
+            <div
                 className={classNames(cls.ProfileCard, {}, [
                     className,
                     cls.error,
                 ])}
             >
-                <Text
-                    theme={TextTheme.ERROR}
-                    title={t('Произошла ошибка при загрузке профиля')}
-                    text={t('Попробуйте обновить страницу')}
-                    align={TextAlign.CENTER}
-                />
-            </HStack>
+                {t('error')}
+            </div>
         );
     }
 
@@ -78,17 +53,13 @@ export const ProfileCard = (props: ProfileCardProps) => {
     };
 
     return (
-        <VStack
-            gap="8"
-            max
-            className={classNames(cls.ProfileCard, mods, [className])}
-        >
+        <div className={classNames(cls.ProfileCard, mods, [className])}>
             <Input
                 value={data?.first}
                 placeholder={t('Ваше имя')}
                 className={cls.input}
                 onChange={onChangeFirstname}
-                readonly={readonly}
+                disabled={readonly}
                 data-testid="ProfileCard.firstname"
             />
             <Input
@@ -96,7 +67,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 placeholder={t('Ваша фамилия')}
                 className={cls.input}
                 onChange={onChangeLastname}
-                readonly={readonly}
+                disabled={readonly}
                 data-testid="ProfileCard.lastname"
             />
             <Input
@@ -104,29 +75,29 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 placeholder={t('Ваш возраст')}
                 className={cls.input}
                 onChange={onChangeAge}
-                readonly={readonly}
+                disabled={readonly}
             />
             <Input
                 value={data?.city}
                 placeholder={t('Город')}
                 className={cls.input}
                 onChange={onChangeCity}
-                readonly={readonly}
+                disabled={readonly}
             />
             <Input
                 value={data?.username}
                 placeholder={t('Введите имя пользователя')}
                 className={cls.input}
                 onChange={onChangeUsername}
-                readonly={readonly}
+                disabled={readonly}
             />
             <Input
                 value={data?.avatar}
                 placeholder={t('Введите ссылку на аватар')}
                 className={cls.input}
                 onChange={onChangeAvatar}
-                readonly={readonly}
+                disabled={readonly}
             />
-        </VStack>
+        </div>
     );
 };

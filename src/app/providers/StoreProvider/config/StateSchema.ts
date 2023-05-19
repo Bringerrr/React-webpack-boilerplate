@@ -16,8 +16,7 @@ export interface StateSchema {
     user: UserSchema;
     ui: UISchema;
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
-
-    // Асинхронные редюсеры
+    // async reducers
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
 }
@@ -33,7 +32,7 @@ export interface ReducerManager {
     ) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
-    // true - вмонтирован, false - демонтирован
+    // true - mounted, false - unmounted
     getMountedReducers: () => MountedReducers;
 }
 
