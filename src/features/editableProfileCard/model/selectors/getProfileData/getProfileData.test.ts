@@ -6,7 +6,7 @@ describe('getProfileData.test', () => {
         const data = {
             username: 'admin',
             age: 22,
-            lastname: 'ulbi tv',
+            lastname: 'Dow',
             first: 'asd',
             city: 'asf',
         };

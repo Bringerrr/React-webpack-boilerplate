@@ -4,13 +4,7 @@ module.exports = {
         es2021: true,
         jest: true,
     },
-    extends: [
-        'plugin:react/recommended',
-        'airbnb',
-        'plugin:i18next/recommended',
-        'plugin:storybook/recommended',
-        'prettier',
-    ],
+    extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended', 'prettier'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
@@ -19,14 +13,7 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: [
-        'react',
-        '@typescript-eslint',
-        'i18next',
-        'react-hooks',
-        'ulbi-tv-plugin',
-        'unused-imports',
-    ],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'unused-imports'],
     rules: {
         'unused-imports/no-unused-imports': 'error',
         'react/jsx-filename-extension': [
@@ -40,7 +27,7 @@ module.exports = {
         'no-unused-vars': 'off',
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
-        'react/jsx-props-no-spreading': 'warn',
+        'react/jsx-props-no-spreading': 'off',
         'react/function-component-definition': 'off',
         'no-shadow': 'off',
         'import/extensions': 'off',
@@ -81,30 +68,6 @@ module.exports = {
         'no-undef': 'off',
         'react/no-array-index-key': 'off',
         'arrow-body-style': 'off',
-        'ulbi-tv-plugin/path-checker': [
-            'error',
-            {
-                alias: '@',
-            },
-        ],
-        'ulbi-tv-plugin/layer-imports': [
-            'error',
-            {
-                alias: '@',
-                ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
-            },
-        ],
-        'ulbi-tv-plugin/public-api-imports': [
-            'error',
-            {
-                alias: '@',
-                testFilesPatterns: [
-                    '**/*.test.*',
-                    '**/*.story.*',
-                    '**/StoreDecorator.tsx',
-                ],
-            },
-        ],
         'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
     },
     globals: {

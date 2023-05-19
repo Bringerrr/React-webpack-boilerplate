@@ -31,7 +31,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     if (authData) {
         return (
             <header className={classNames(cls.Navbar, {}, [className])}>
-                <p className={cls.appName}>{t('Ulbi TV App')}</p>
+                <p className={cls.appName}>{t('Navbar')}</p>
                 <LangSwitcher />
                 <Button
                     onClick={() => {

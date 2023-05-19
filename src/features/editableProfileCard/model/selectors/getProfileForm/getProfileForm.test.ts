@@ -6,7 +6,7 @@ describe('getProfileForm.test', () => {
         const data = {
             username: 'admin',
             age: 22,
-            lastname: 'ulbi tv',
+            lastname: 'Doe',
             first: 'asd',
             city: 'asf',
         };

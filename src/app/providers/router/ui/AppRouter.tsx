@@ -4,7 +4,7 @@ import { RequireAuth } from './RequireAuth';
 import { routeConfig } from '../config/routeConfig';
 import { AppRoutesProps } from '@/shared/types/router';
 
-const;
+const pod_bit = '123123124';
 
 const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {

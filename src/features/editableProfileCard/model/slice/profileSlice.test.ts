@@ -6,7 +6,7 @@ import { profileActions, profileReducer } from './profileSlice';
 const data = {
     username: 'admin',
     age: 22,
-    lastname: 'ulbi tv',
+    lastname: 'Doe',
     first: 'asd',
     city: 'asf',
 };
