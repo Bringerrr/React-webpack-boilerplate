@@ -5,6 +5,7 @@ import { routeConfig } from '../config/routeConfig';
 import { AppRoutesProps } from '@/shared/types/router';
 
 const;
+const;
 
 const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {
