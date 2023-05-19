@@ -4,8 +4,6 @@ import { RequireAuth } from './RequireAuth';
 import { routeConfig } from '../config/routeConfig';
 import { AppRoutesProps } from '@/shared/types/router';
 
-const pod_bit = '123123124';
-
 const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {
         const element = <Suspense fallback={<div />}>{route.element}</Suspense>;
