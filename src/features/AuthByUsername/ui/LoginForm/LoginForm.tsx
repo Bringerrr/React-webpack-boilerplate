@@ -61,14 +61,14 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                 <Input
                     type="text"
                     className={cls.input}
-                    placeholder={t('Введите username')}
+                    placeholder={t('Login')}
                     onChange={onChangeUsername}
                     value={username}
                 />
                 <Input
                     type="text"
                     className={cls.input}
-                    placeholder={t('Введите пароль')}
+                    placeholder={t('Password')}
                     onChange={onChangePassword}
                     value={password}
                 />
@@ -77,7 +77,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     onClick={onLoginClick}
                     disabled={isLoading}
                 >
-                    {t('Войти')}
+                    {t('Log in')}
                 </Button>
             </div>
         </DynamicModuleLoader>

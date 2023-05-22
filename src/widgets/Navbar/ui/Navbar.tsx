@@ -47,7 +47,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     return (
         <header className={classNames(cls.Navbar, {}, [className])}>
             <Button className={cls.links} onClick={onShowModal}>
-                {t('Войти')}
+                {t('Log in')}
             </Button>
             {isAuthModal && (
                 <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />

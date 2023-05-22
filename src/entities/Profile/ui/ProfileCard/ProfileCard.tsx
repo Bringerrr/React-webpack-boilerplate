@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import Input from '@mui/material/Input';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './ProfileCard.module.scss';
-import { Profile } from '../../model/types/profile';
 import { MaterialInputOnChangeType } from '@/shared/types/ui';
+import { Profile } from '../../model/types/profile';
 
 interface ProfileCardProps {
     className?: string;
@@ -33,7 +33,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
         onChangeAvatar,
         onChangeUsername,
     } = props;
-    const { t } = useTranslation('profile');
+    const { t } = useTranslation();
 
     if (error) {
         return (
@@ -56,7 +56,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
         <div className={classNames(cls.ProfileCard, mods, [className])}>
             <Input
                 value={data?.first}
-                placeholder={t('Ваше имя')}
+                placeholder={t('First Name')}
                 className={cls.input}
                 onChange={onChangeFirstname}
                 disabled={readonly}
@@ -64,7 +64,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
             />
             <Input
                 value={data?.lastname}
-                placeholder={t('Ваша фамилия')}
+                placeholder={t('Last name')}
                 className={cls.input}
                 onChange={onChangeLastname}
                 disabled={readonly}
@@ -72,28 +72,28 @@ export const ProfileCard = (props: ProfileCardProps) => {
             />
             <Input
                 value={data?.age}
-                placeholder={t('Ваш возраст')}
+                placeholder={t('age')}
                 className={cls.input}
                 onChange={onChangeAge}
                 disabled={readonly}
             />
             <Input
                 value={data?.city}
-                placeholder={t('Город')}
+                placeholder={t('City')}
                 className={cls.input}
                 onChange={onChangeCity}
                 disabled={readonly}
             />
             <Input
                 value={data?.username}
-                placeholder={t('Введите имя пользователя')}
+                placeholder={t('username')}
                 className={cls.input}
                 onChange={onChangeUsername}
                 disabled={readonly}
             />
             <Input
                 value={data?.avatar}
-                placeholder={t('Введите ссылку на аватар')}
+                placeholder={t('Avatar')}
                 className={cls.input}
                 onChange={onChangeAvatar}
                 disabled={readonly}
