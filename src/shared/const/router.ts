@@ -9,3 +9,5 @@ export enum AppRoutes {
 export const getRouteMain = () => '/';
 export const getRouteProfile = (id: string) => `/profile/${id}`;
 export const getRouteForbidden = () => '/forbidden';
+
+const test = null;
