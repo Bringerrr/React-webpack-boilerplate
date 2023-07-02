@@ -1,1 +1,0 @@
-export type MaterialInputOnChangeType = React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>

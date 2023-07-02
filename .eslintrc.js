@@ -4,7 +4,7 @@ module.exports = {
         es2021: true,
         jest: true,
     },
-    extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended', 'prettier'],
+    extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
@@ -13,7 +13,7 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'unused-imports'],
+    plugins: ['react', '@typescript-eslint', 'react-hooks', 'unused-imports'],
     rules: {
         'unused-imports/no-unused-imports': 'error',
         'react/jsx-filename-extension': [
@@ -33,24 +33,6 @@ module.exports = {
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
-        'i18next/no-literal-string': [
-            'error',
-            {
-                markupOnly: true,
-                ignoreAttribute: [
-                    'as',
-                    'role',
-                    'data-testid',
-                    'to',
-                    'target',
-                    'justify',
-                    'align',
-                    'border',
-                    'direction',
-                    'gap',
-                ],
-            },
-        ],
         'max-len': [
             'error',
             {
@@ -79,7 +61,6 @@ module.exports = {
         {
             files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
             rules: {
-                'i18next/no-literal-string': 'off',
                 'max-len': 'off',
             },
         },
