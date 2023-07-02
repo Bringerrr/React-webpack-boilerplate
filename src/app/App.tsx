@@ -3,11 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { getUserInited, userActions } from '@/entities/User';
 import { AppRouter } from './providers/router';
-import { Navbar } from '@/widgets/Navbar';
-import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
 function App() {
-    const { theme } = useTheme();
     const dispatch = useDispatch();
     const inited = useSelector(getUserInited);
 
@@ -16,9 +13,9 @@ function App() {
     }, [dispatch]);
 
     return (
-        <div className={classNames('app', {}, [theme])}>
+        <div className={classNames('app', {}, [])}>
             <Suspense fallback="">
-                <Navbar />
+                {/* <Navbar /> */}
                 <div className="content-page">{inited && <AppRouter />}</div>
             </Suspense>
         </div>
